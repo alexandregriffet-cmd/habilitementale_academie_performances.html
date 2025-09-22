@@ -38,7 +38,6 @@ const coachText = {
 
 // ---------- FORM BUILD ----------
 const ITEMS = [
-  // (72 items — identiques aux versions précédentes)
   {id:"EST1", text:"Je pense avoir de la valeur, même quand je fais des erreurs.", dim:"EST"},
   {id:"EST2", text:"Je me respecte dans mes choix, même si les autres ne sont pas d’accord.", dim:"EST"},
   {id:"EST3", text:"Je crois que mes qualités sont au moins aussi importantes que mes défauts.", dim:"EST"},
@@ -174,17 +173,14 @@ document.getElementById("calc").onclick = () => {
 };
 
 function renderResults(dimPct, blockPct, global){
-  // show sections
   document.getElementById("results").style.display="block";
   document.getElementById("details").style.display="block";
   document.getElementById("coach").style.display="block";
 
-  // global
   document.getElementById("globalPct").textContent = global!=null?`${global}%`:"NA";
   document.getElementById("globalBar").style.width = (global||0)+'%';
   document.getElementById("globalBand").textContent = global!=null?bandLabel(global):"NA";
 
-  // blocks bars
   const bb = document.getElementById("blocksBars"); bb.innerHTML="";
   for(const [code,val] of Object.entries(blockPct)){
     const wrap=document.createElement("div");
@@ -193,7 +189,6 @@ function renderResults(dimPct, blockPct, global){
     bb.appendChild(wrap);
   }
 
-  // dims grid
   const db=document.getElementById("dimsBars"); db.innerHTML="";
   dims.forEach(d=>{
     const v=dimPct[d];
@@ -204,7 +199,8 @@ function renderResults(dimPct, blockPct, global){
     db.appendChild(card);
   });
 
-  // coach text
+  drawRadar(dimPct);
+
   const coach = document.getElementById("coachTxt"); coach.innerHTML="";
   dims.forEach(d=>{
     const v = dimPct[d];
@@ -218,9 +214,6 @@ function renderResults(dimPct, blockPct, global){
     box.innerHTML = `<h3 style="margin-top:0">${labels[d]}</h3><p>${txt}</p>`;
     coach.appendChild(box);
   });
-
-  // radar
-  drawRadar(dimPct);
 }
 
 function drawRadar(dimPct){
@@ -261,7 +254,5 @@ function drawRadar(dimPct){
   svg.appendChild(p);
 }
 
-// PDF via impression navigateur (mise en page A4 optimisée)
-document.getElementById("pdf").onclick = () => {
-  window.print();
-};
+// PDF via impression navigateur
+document.getElementById("pdf").onclick = () => { window.print(); };
