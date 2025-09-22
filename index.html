@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A4P – Inventaire Compétences Mentales</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <img src="logo_a4p.jpeg" alt="Académie de Performances - Alexandre Griffet" />
+    <h1>Inventaire des Compétences Mentales</h1>
+    <div class="help">Échelle de réponse : 1 = Pas du tout · 5 = Tout à fait</div>
+  </header>
+
+  <main class="wrap">
+    <section class="card form">
+      <h2>Questionnaire (72 items)</h2>
+      <div class="meta"><span class="tag">Test ID : A4P-OMSATX</span><span class="tag" id="dateTag"></span></div>
+      <div id="form"></div>
+      <button id="calc" class="btn">Calculer mes résultats</button>
+      <button id="pdf" class="btn" disabled>Télécharger le PDF</button>
+    </section>
+
+    <section id="results" class="card" style="display:none;">
+      <h2>Résultats</h2>
+      <div class="chart-wrap">
+        <div>
+          <h3>Score global (moyenne des 4 blocs)</h3>
+          <div class="bar-label"><span>Global</span><b id="globalPct">–</b></div>
+          <div class="bar"><span id="globalBar" style="width:0%"></span></div>
+          <div class="help">Bande : <b id="globalBand">–</b></div>
+
+          <h3 style="margin-top:16px;">Blocs</h3>
+          <div id="blocksBars"></div>
+        </div>
+        <div>
+          <h3>Radar 12 dimensions</h3>
+          <svg id="radar" width="480" height="480" viewBox="0 0 480 480" aria-label="Radar des 12 dimensions"></svg>
+          <div class="note">Chaque axe va de 0% (centre) à 100% (pourtour).</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="details" class="card" style="display:none;">
+      <h2>Détail par dimension</h2>
+      <div id="dimsBars" class="k2"></div>
+    </section>
+
+    <section id="coach" class="card page-break" style="display:none;">
+      <h2>Recommandations coach</h2>
+      <div id="coachTxt" class="k2"></div>
+      <div class="note">Texte généré automatiquement selon les bandes de score.</div>
+    </section>
+
+    <div class="footer">© Académie de Performances – Alexandre Griffet</div>
+  </main>
+
+  <script src="a4p_pdf.js"></script>
+</body>
+</html>
